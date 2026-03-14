@@ -35,3 +35,8 @@ crashlytics.properties
 EyeCareTests/
 EyeCareUITests/
 .gitignore
+
+# Windows and Linux files
+bin/
+build/
+obj/

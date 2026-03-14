@@ -1,0 +1,111 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Descreen"
+        x:Class="Descreen.MainWindow"
+        x:DataType="local:MainViewModel"
+        Title="Descreen"
+        Width="420" Height="320"
+        MinWidth="380" MinHeight="280"
+        CanResize="False"
+        Background="#1a1a1a"
+        FontFamily="Segoe UI, SF Pro Display, Ubuntu, sans-serif">
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#2a2a2a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#3a3a3a"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#111111" Padding="20,16">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <TextBlock Text="👁" FontSize="28" VerticalAlignment="Center"/>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Descreen"
+                               FontSize="18" FontWeight="Bold"
+                               Foreground="White"/>
+                    <TextBlock Text="{Binding TimeLeftText}"
+                               FontSize="12" Foreground="#aaaaaa"/>
+                </StackPanel>
+                <StackPanel.Styles>
+                    <Style Selector="TextBlock"/>
+                </StackPanel.Styles>
+            </StackPanel>
+        </Border>
+
+        <!-- Body -->
+        <StackPanel Grid.Row="1" Margin="20,16" Spacing="10">
+
+            <!-- Focus status -->
+            <Border Background="#222222" CornerRadius="8" Padding="14,10">
+                <TextBlock Text="{Binding FocusStatusText}"
+                           Foreground="#aaaaaa" FontSize="13"/>
+            </Border>
+
+            <!-- Warning banner -->
+            <Border Background="#1a1a2e" CornerRadius="8" Padding="14,10"
+                    BorderBrush="#3a3aff" BorderThickness="1"
+                    IsVisible="{Binding ShowWarning}">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                        <TextBlock Text="{Binding WarningTitle}"
+                                   FontWeight="Bold" Foreground="White" FontSize="13"/>
+                        <TextBlock Text="{Binding WarningSubtitle}"
+                                   Foreground="#aaaaaa" FontSize="12"/>
+                    </StackPanel>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding CountdownText}"
+                               IsVisible="{Binding ShowCountdown}"
+                               FontSize="28" FontWeight="Bold"
+                               Foreground="Orange"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+                </Grid>
+            </Border>
+
+            <!-- Buttons -->
+            <Grid ColumnDefinitions="*,*" HorizontalAlignment="Stretch">
+                <Button Grid.Column="0"
+                        Command="{Binding ToggleFocusModeCommand}"
+                        Content="{Binding FocusButtonText}"
+                        Background="#1e3a5f"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,5,0"/>
+                <Button Grid.Column="1"
+                        Command="{Binding TakeBreakNowCommand}"
+                        Content="Take Break Now"
+                        Background="#1e5f3a"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="5,0,0,0"/>
+            </Grid>
+
+        </StackPanel>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" Background="#111111" Padding="20,12">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Text="© Kai Rozema"
+                           Foreground="#555555" FontSize="11"
+                           VerticalAlignment="Center"/>
+                <Button Grid.Column="1"
+                        Command="{Binding OpenSettingsCommand}"
+                        Content="⚙  Settings"
+                        Background="#2a2a2a"
+                        FontSize="12"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

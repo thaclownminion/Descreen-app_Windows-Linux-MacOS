@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Descreen.BreakOverlayWindow"
+        Title="Descreen – Break"
+        Background="Black"
+        WindowState="FullScreen"
+        SystemDecorations="None"
+        Topmost="True"
+        ShowInTaskbar="False"
+        CanResize="False">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Spacing="24">
+
+            <!-- Eye icon -->
+            <TextBlock Text="👁"
+                       FontSize="90"
+                       HorizontalAlignment="Center"/>
+
+            <!-- Break message -->
+            <TextBlock x:Name="MessageLabel"
+                       FontSize="46" FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       MaxWidth="700"/>
+
+            <!-- Sub text -->
+            <TextBlock Text="Look away from your screen"
+                       FontSize="22"
+                       Foreground="#aaaaaa"
+                       HorizontalAlignment="Center"/>
+
+            <!-- Progress ring + countdown -->
+            <Grid Width="220" Height="220"
+                  HorizontalAlignment="Center"
+                  Margin="0,20,0,0">
+
+                <Canvas Width="220" Height="220"
+                        x:Name="RingCanvas"/>
+
+                <TextBlock x:Name="CountdownLabel"
+                           FontSize="58" FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Window>

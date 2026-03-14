@@ -1,0 +1,231 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Descreen.SettingsWindow"
+        Title="Descreen – Settings"
+        Width="470" Height="680"
+        CanResize="False"
+        Background="#1a1a1a"
+        FontFamily="Segoe UI, SF Pro Display, Ubuntu, sans-serif">
+
+    <Window.Styles>
+        <Style Selector="TextBlock.section">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#6fa3ef"/>
+            <Setter Property="Margin" Value="0,14,0,4"/>
+        </Style>
+        <Style Selector="TextBlock.caption">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#666666"/>
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#2a2a2a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#444444"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        <Style Selector="CheckBox">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="RadioButton">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Slider">
+            <Setter Property="Foreground" Value="#6fa3ef"/>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="14,9"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="TabItem">
+            <Setter Property="Foreground" Value="#aaaaaa"/>
+            <Setter Property="Background" Value="#1a1a1a"/>
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#111111" Padding="20,14">
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <TextBlock Text="👁" FontSize="24" VerticalAlignment="Center"/>
+                <TextBlock Text="Descreen Settings"
+                           FontSize="17" FontWeight="Bold"
+                           Foreground="White" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Tabs -->
+        <TabControl Grid.Row="1" Background="#1a1a1a" Margin="0">
+
+            <!-- ── General ──────────────────────────────────────────────── -->
+            <TabItem Header="General">
+                <ScrollViewer Padding="20,8">
+                    <StackPanel Spacing="2">
+
+                        <TextBlock Classes="section" Text="Break Message"/>
+                        <TextBox x:Name="BreakMessageBox"/>
+                        <Button x:Name="ResetMessageBtn"
+                                Content="↺  Reset to default"
+                                Background="Transparent"
+                                Foreground="#6fa3ef"
+                                Padding="0,4"
+                                Margin="0,2,0,0"/>
+                        <TextBlock Classes="caption" Text="Displayed on screen during break overlays"/>
+
+                        <TextBlock Classes="section" Text="Startup"/>
+                        <CheckBox x:Name="LaunchAtLoginCheck"
+                                  Content="Launch at Login"/>
+                        <TextBlock Classes="caption"
+                                   Text="Start Descreen automatically when you log in"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- ── Timers ───────────────────────────────────────────────── -->
+            <TabItem Header="Timers">
+                <ScrollViewer Padding="20,8">
+                    <StackPanel Spacing="2">
+
+                        <TextBlock Classes="section" Text="Work Interval"/>
+                        <TextBlock x:Name="WorkValueLabel"
+                                   Foreground="White" FontWeight="Bold"/>
+                        <Slider x:Name="WorkSlider"
+                                Minimum="1" Maximum="120" TickFrequency="1"/>
+                        <TextBlock Classes="caption" Text="Time between breaks"/>
+
+                        <TextBlock Classes="section" Text="Break Duration"/>
+                        <TextBlock x:Name="BreakValueLabel"
+                                   Foreground="White" FontWeight="Bold"/>
+                        <Slider x:Name="BreakSlider"
+                                Minimum="10" Maximum="300" TickFrequency="5"/>
+                        <TextBlock Classes="caption" Text="How long each break lasts"/>
+
+                        <TextBlock Classes="section" Text="Focus Mode Duration"/>
+                        <TextBlock x:Name="FocusValueLabel"
+                                   Foreground="White" FontWeight="Bold"/>
+                        <Slider x:Name="FocusSlider"
+                                Minimum="15" Maximum="180" TickFrequency="5"/>
+                        <TextBlock Classes="caption" Text="No breaks during focus mode"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- ── Notifications ────────────────────────────────────────── -->
+            <TabItem Header="Notifications">
+                <ScrollViewer Padding="20,8">
+                    <StackPanel Spacing="6">
+
+                        <CheckBox x:Name="NotificationsCheck"
+                                  Content="Enable Notifications"
+                                  FontWeight="Bold" Margin="0,10,0,0"/>
+
+                        <TextBlock Classes="section" Text="Notification Type"/>
+                        <RadioButton x:Name="SystemNotifRadio"
+                                     Content="System notifications (OS notification centre)"
+                                     GroupName="NotifType"/>
+                        <RadioButton x:Name="InAppNotifRadio"
+                                     Content="In-app banner (shown in main window)"
+                                     GroupName="NotifType"/>
+
+                        <TextBlock Classes="section" Text="Warn me before break"/>
+                        <CheckBox x:Name="Notif5" Content="5 minutes before"/>
+                        <CheckBox x:Name="Notif2" Content="2 minutes before"/>
+                        <CheckBox x:Name="Notif1" Content="1 minute before"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- ── Schedule ─────────────────────────────────────────────── -->
+            <TabItem Header="Schedule">
+                <ScrollViewer Padding="20,8">
+                    <StackPanel Spacing="6">
+
+                        <CheckBox x:Name="ScheduleCheck"
+                                  Content="Enable Weekly Schedule"
+                                  FontWeight="Bold" Margin="0,10,0,0"/>
+
+                        <TextBlock Classes="section" Text="Active Days"/>
+                        <CheckBox x:Name="MondayCheck"    Content="Monday"/>
+                        <CheckBox x:Name="TuesdayCheck"   Content="Tuesday"/>
+                        <CheckBox x:Name="WednesdayCheck" Content="Wednesday"/>
+                        <CheckBox x:Name="ThursdayCheck"  Content="Thursday"/>
+                        <CheckBox x:Name="FridayCheck"    Content="Friday"/>
+                        <CheckBox x:Name="SaturdayCheck"  Content="Saturday"/>
+                        <CheckBox x:Name="SundayCheck"    Content="Sunday"/>
+                        <TextBlock Classes="caption" Text="Breaks only happen on selected days"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- ── Advanced ─────────────────────────────────────────────── -->
+            <TabItem Header="Advanced">
+                <ScrollViewer Padding="20,8">
+                    <StackPanel Spacing="2">
+
+                        <TextBlock Classes="section" Text="Focus Mode Cooldown"/>
+                        <CheckBox x:Name="CooldownCheck" Content="Enable Cooldown"/>
+                        <TextBlock x:Name="CooldownValueLabel"
+                                   Foreground="White" FontWeight="Bold"/>
+                        <Slider x:Name="CooldownSlider"
+                                Minimum="5" Maximum="120" TickFrequency="5"/>
+                        <TextBlock Classes="caption"
+                                   Text="Wait time before enabling Focus Mode again"/>
+
+                        <TextBlock Classes="section" Text="Quit Protection"/>
+                        <CheckBox x:Name="QuitDelayCheck" Content="Enable Quit Delay"/>
+                        <TextBlock x:Name="QuitDelayValueLabel"
+                                   Foreground="White" FontWeight="Bold"/>
+                        <Slider x:Name="QuitDelaySlider"
+                                Minimum="5" Maximum="60" TickFrequency="5"/>
+                        <TextBlock Classes="caption"
+                                   Text="Wait time before the Quit button becomes active"/>
+
+                        <TextBlock Classes="caption"
+                                   Foreground="Orange" Margin="0,8,0,0"
+                                   Text="Note: You can only quit from this Settings window"/>
+
+                        <Button x:Name="QuitBtn"
+                                Content="✖  Quit Descreen"
+                                Background="#aa1c1c"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Left"/>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+
+        <!-- Bottom buttons -->
+        <Border Grid.Row="2" Background="#111111" Padding="20,12">
+            <Grid ColumnDefinitions="*,*">
+                <Button Grid.Column="0"
+                        x:Name="DonateBtn"
+                        Content="☕  Buy Me a Coffee"
+                        Background="#c0306a"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="0,0,6,0"/>
+                <Button Grid.Column="1"
+                        x:Name="SaveBtn"
+                        Content="✔  Save Settings"
+                        Background="#0070c8"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Margin="6,0,0,0"/>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>
