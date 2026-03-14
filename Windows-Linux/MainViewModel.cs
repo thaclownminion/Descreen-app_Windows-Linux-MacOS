@@ -40,18 +40,15 @@ public partial class MainViewModel : ObservableObject
 
         _timer.OnBreakWarning = mins => UI(() =>
         {
-            WarningTitle    = mins <= 1 ? "Break Starting Soon!" : "Break Coming Soon";
-            WarningSubtitle = $"{mins} minute{(mins == 1 ? "" : "s")} until your break";
-            ShowCountdown   = false;
-            ShowWarning     = true;
-
-            // Auto-hide after 5 s (unless it's the 1-min warning)
-            if (mins != 1)
-                DispatcherTimer.RunOnce(() => ShowWarning = false, TimeSpan.FromSeconds(5));
+            // Fire a real OS notification — appears in notification centre / top bar
+            string title = mins <= 1 ? "Break Starting Soon!" : "Break Coming Soon";
+            string body  = $"Your eye break starts in {mins} minute{(mins == 1 ? "" : "s")}";
+            Notifier.Send(title, body);
         });
 
         _timer.OnBreakCountdown = secs => UI(() =>
         {
+            // Live countdown stays in-app since OS notifications can't update in real time
             WarningTitle    = "Break Starting Soon!";
             WarningSubtitle = "Get ready to rest your eyes";
             CountdownText   = secs.ToString();
