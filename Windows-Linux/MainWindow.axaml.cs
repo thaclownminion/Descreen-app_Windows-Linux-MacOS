@@ -9,11 +9,10 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    // Block Alt+F4 — only Settings can quit
+    // Block Alt+F4 completely — only Settings → Quit can close the app
     protected override void OnClosing(WindowClosingEventArgs e)
     {
         e.Cancel = true;
-        Hide();
         base.OnClosing(e);
     }
 }

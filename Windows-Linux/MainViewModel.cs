@@ -9,7 +9,6 @@ namespace Descreen;
 public partial class MainViewModel : ObservableObject
 {
     private readonly TimerManager _timer;
-    private MainWindow? _window;
 
     [ObservableProperty] private string _timeLeftText    = "Calculating...";
     [ObservableProperty] private string _focusStatusText = "Focus Mode: Off";
@@ -44,8 +43,8 @@ public partial class MainViewModel : ObservableObject
         });
     }
 
-    // Called by App so the ViewModel can show/hide the window
-    public void SetWindow(MainWindow window) => _window = window;
+    // Called by App so ViewModel has a reference if needed in future
+    public void SetWindow(MainWindow window) { }
 
     private void UpdateFocusButton() =>
         FocusButtonText = _timer.IsFocusModeActive ? "Disable Focus Mode" : "Enable Focus Mode";
@@ -76,9 +75,6 @@ public partial class MainViewModel : ObservableObject
 
     [RelayCommand]
     private void TakeBreakNow() => _timer.TriggerBreakNow();
-
-    [RelayCommand]
-    private void HideWindow() => _window?.Hide();
 
     [RelayCommand]
     private void OpenSettings()

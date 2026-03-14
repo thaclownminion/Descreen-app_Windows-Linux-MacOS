@@ -127,14 +127,8 @@
                         <CheckBox x:Name="NotificationsCheck"
                                   Content="Enable Notifications"
                                   FontWeight="Bold" Margin="0,10,0,0"/>
-
-                        <TextBlock Classes="section" Text="Notification Type"/>
-                        <RadioButton x:Name="SystemNotifRadio"
-                                     Content="System notifications (OS notification centre)"
-                                     GroupName="NotifType"/>
-                        <RadioButton x:Name="InAppNotifRadio"
-                                     Content="In-app banner (shown in main window)"
-                                     GroupName="NotifType"/>
+                        <TextBlock Classes="caption"
+                                   Text="System notifications will appear before your break"/>
 
                         <TextBlock Classes="section" Text="Warn me before break"/>
                         <CheckBox x:Name="Notif5" Content="5 minutes before"/>

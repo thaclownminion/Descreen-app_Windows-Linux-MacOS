@@ -12,42 +12,50 @@
         ExtendClientAreaChromeHints="NoChrome"
         ExtendClientAreaTitleBarHeightHint="-1">
 
+    <!-- Outer grid fills the entire screen -->
     <Grid HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch">
 
-        <StackPanel VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Spacing="24">
+        <!-- Inner panel is perfectly centred both ways -->
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Spacing="24"
+                    MaxWidth="700">
 
             <TextBlock Text="👁"
                        FontSize="90"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"/>
 
             <TextBlock x:Name="MessageLabel"
                        FontSize="46" FontWeight="Bold"
                        Foreground="White"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
-                       MaxWidth="700"
                        TextWrapping="Wrap"/>
 
             <TextBlock Text="Look away from your screen"
                        FontSize="22"
                        Foreground="#aaaaaa"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"/>
 
+            <!-- Ring + countdown, both centred -->
             <Grid Width="220" Height="220"
                   HorizontalAlignment="Center"
                   Margin="0,20,0,0">
 
                 <Canvas Width="220" Height="220"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
                         x:Name="RingCanvas"/>
 
                 <TextBlock x:Name="CountdownLabel"
                            FontSize="58" FontWeight="Bold"
                            Foreground="White"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center"
+                           TextAlignment="Center"/>
             </Grid>
 
         </StackPanel>

@@ -39,8 +39,6 @@ public partial class SettingsWindow : Window
 
         // Notifications
         NotificationsCheck.IsChecked = _timer.NotificationsEnabled;
-        SystemNotifRadio.IsChecked   = _timer.UseSystemNotifications;
-        InAppNotifRadio.IsChecked    = !_timer.UseSystemNotifications;
         Notif5.IsChecked = _timer.NotificationTiming.Contains(5);
         Notif2.IsChecked = _timer.NotificationTiming.Contains(2);
         Notif1.IsChecked = _timer.NotificationTiming.Contains(1);
@@ -99,7 +97,7 @@ public partial class SettingsWindow : Window
     private void SaveSettings()
     {
         _timer.NotificationsEnabled   = NotificationsCheck.IsChecked == true;
-        _timer.UseSystemNotifications = SystemNotifRadio.IsChecked   == true;
+        _timer.UseSystemNotifications = true; // always system notifications
 
         var timing = new List<int>();
         if (Notif5.IsChecked == true) timing.Add(5);
@@ -139,12 +137,17 @@ public partial class SettingsWindow : Window
         if (_timer.QuitDelayEnabled && _quitCountdownRemaining > 0)
             BeginQuitCountdown();
         else
-        {
-            _allowedToQuit = true;
-            (App.Current?.ApplicationLifetime as
-                Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)
-                ?.Shutdown();
-        }
+            DoQuit();
+    }
+
+    private void DoQuit()
+    {
+        _allowedToQuit = true;
+        // Shutdown Avalonia cleanly first, then force-kill the process
+        (App.Current?.ApplicationLifetime as
+            Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)
+            ?.Shutdown();
+        Environment.Exit(0);
     }
 
     private void BeginQuitCountdown()
@@ -165,6 +168,7 @@ public partial class SettingsWindow : Window
                 _quitCountdownActive = false;
                 QuitBtn.IsEnabled = true;
                 QuitBtn.Content   = "✖  Quit Descreen";
+                // Countdown finished — button is now active, user clicks to confirm
             }
             else QuitBtn.Content = $"Wait {_quitCountdownRemaining}s…";
         };

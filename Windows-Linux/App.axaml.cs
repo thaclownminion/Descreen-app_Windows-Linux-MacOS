@@ -20,18 +20,16 @@ public partial class App : Application
             mainVm.SetWindow(mainWindow);
             desktop.MainWindow = mainWindow;
 
-            // Guard: only one overlay can be open at a time
+            // Guard: only one overlay open at a time
             BreakOverlayWindow? activeOverlay = null;
 
             timerManager.OnBreakStart = () => Dispatcher.UIThread.Post(() =>
             {
-                // If an overlay is somehow already open, close it first
                 if (activeOverlay != null && activeOverlay.IsVisible)
                 {
                     activeOverlay.ForceClose();
                     activeOverlay = null;
                 }
-
                 activeOverlay = new BreakOverlayWindow(timerManager);
                 activeOverlay.Closed += (_, _) => activeOverlay = null;
                 activeOverlay.Show();
