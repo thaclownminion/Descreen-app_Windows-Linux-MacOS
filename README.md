@@ -2,7 +2,7 @@
 This is an app that is meant to make you look away from your screen so your eyes live a little longer!
 # MacOS Descreen app instructions
 
-# How to download
+## How to download
 To download this app just download the .zip file from the newest release and unzip it by double clicking on the .zip file. 
 After you unzipped the file double click the "Descreen.app" you should get a pop-up that says thay you have to move the app to the trash. 
 To still be able to run it go to:
@@ -19,7 +19,20 @@ You can find the app on the top of your screen (in the menu bar).
 
 # Windows Descreen app instructions
 
+## How to download and run
+To download the windows veriosn just download the .zip file from the newest release and unzip it by double clicking on the .zip file. 
+After you unzipped the file double click the "Descreen.exe". 
 
+# Linux Descreen app instructions
+
+## How to download and run
+To download the Linux verion, download the linux.zip file of the latest release. Then unzip the file. You should get a folder. Double click on that folder and search for the "Descreen" file. 
+
+If that doesn't work:
+- Open the terminal app
+- then run "cd ~/Downloads/linux"
+- then run "chmod +x ./Descreen"
+- And now double click the "Descreen file"
 
 # Features
 - Focus time: You can set a focus time and in that time you won't be blocked. For example in a meeting. you can change your time in the settings. 
